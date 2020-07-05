@@ -1,47 +1,22 @@
 import React from 'react';
-import {View,Text} from 'react-native';
-import WelcomeScreen from './screens/WelcomeScreen'
-import {createAppContainer, createSwitchNavigator} from 'react-navigation'
-import {AppTabNavigator} from './components/AppTabNavigator';
+import { createAppContainer, createSwitchNavigator,} from 'react-navigation';
 
-import {createDrawerNavigator} from 'react-navigation-drawer';
-import SettingScreen from './screens/SettingScreen'
-import CustomSideBarMenu from './components/CustomSideBarMenu';
+import WelcomeScreen from './screens/WelcomeScreen';
+import { AppDrawerNavigator } from './components/AppDrawerNavigator'
+import { AppTabNavigator } from './components/AppTabNavigator'
 
 
+export default function App() {
+  return (
+    <AppContainer/>
+  );
+}
 
-
-export default function App (){
-
-    return(
-
-      <AppContainer/>
-      
-     
-      
-    )
-    
-  }
-  export const AppDrawerNavigator = createDrawerNavigator({
-    Home:{
-        screen:AppTabNavigator
-    },
-    Settings:{
-      screen:SettingScreen
-    },
-},
-{
-    contentComponent:CustomSideBarMenu
-},
-{
-    initialRouteName:'Home'
-})
 
 const switchNavigator = createSwitchNavigator({
-  WelcomeScreen:{screen:WelcomeScreen},
-AppDrawerNavigator:AppDrawerNavigator
-  
+  WelcomeScreen:{screen: WelcomeScreen},
+  AppDrawerNavigator:{screen: AppDrawerNavigator},
+  BottomTab: {screen: AppTabNavigator},
 })
 
-
-const AppContainer = createAppContainer(switchNavigator)
+const AppContainer =  createAppContainer(switchNavigator);

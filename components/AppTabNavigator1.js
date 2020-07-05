@@ -4,6 +4,7 @@ import DonateScreen from '../screens/DonateScreen';
 import FoodDonateScreen from '../screens/FoodDonateScreen';
 import RecipeDonateScreen from '../screens/RecipeDonateScreen'
 import{Image} from 'react-native'
+import {AppStackNavigator} from './AppStackNavigator';
 
 import {createAppContainer,createSwitchNavigator} from 'react-navigation'
 
@@ -11,7 +12,7 @@ import {createAppContainer,createSwitchNavigator} from 'react-navigation'
 
 export const AppTabNavigator1 = createBottomTabNavigator({
     FoodDonate:{
-        screen:FoodDonateScreen,
+        screen:AppStackNavigator,
         navigationOptions: {
             tabBarIcon: 
             <Image

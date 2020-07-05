@@ -9,6 +9,7 @@ export default class FoodDonateScreen extends Component{
   constructor(){
     super()
     this.state = {
+      userId  : firebase.auth().currentUser.email,
       requestedFoodList : []
     }
   this.requestRef= null
@@ -17,7 +18,7 @@ export default class FoodDonateScreen extends Component{
   getRequestedFoodList =()=>{
     this.requestRef = db.collection("requested_food")
     .onSnapshot((snapshot)=>{
-      var requestedFoodList = snapshot.docs.map(document => document.data());
+      var requestedFoodList = snapshot.docs.map((doc) => doc.data())
       this.setState({
         requestedFoodList : requestedFoodList
       });
@@ -42,7 +43,11 @@ export default class FoodDonateScreen extends Component{
         subtitle={item.health_issues}
         titleStyle={{ color: 'black', fontWeight: 'bold' }}
         rightElement={
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button}
+              onPress ={()=>{
+                this.props.navigation.navigate("RecieverDetails",{"details": item})
+              }}
+              >
               <Text style={{color:'#ffff'}}>View</Text>
             </TouchableOpacity>
           }
@@ -54,7 +59,7 @@ export default class FoodDonateScreen extends Component{
   render(){
     return(
       <View style={{flex:1}}>
-        <MyHeader title="DONATE FOOD"/>
+        <MyHeader title="Donate Food" navigation ={this.props.navigation}/>
         <View style={{flex:1}}>
           {
             this.state.requestedFoodList.length === 0
@@ -85,19 +90,15 @@ const styles = StyleSheet.create({
     alignItems:'center'
   },
   button:{
-    width:300,
-    height:50,
+    width:100,
+    height:30,
     justifyContent:'center',
     alignItems:'center',
-    borderRadius:25,
-    backgroundColor:"#ff00c3",
+    backgroundColor:"#ff5722",
     shadowColor: "#000",
     shadowOffset: {
        width: 0,
-       height: 8,
-    },
-    shadowOpacity: 0.30,
-    shadowRadius: 10.32,
-    elevation: 16,
+       height: 8
+     }
   }
 })

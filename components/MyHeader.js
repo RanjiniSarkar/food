@@ -5,7 +5,7 @@ import {Header} from 'react-native-elements';
 const MyHeader = props=>{
     return(
         <Header
-        centerComponent = {{text:props.title,style:{color:'white',fontSize:28,fontWeight:'bold',}}}
+        centerComponent = {{text:props.title,style:{color:'white',fontSize:26,fontWeight:'bold',}}}
         backgroundColor = '#0099ff'
         
         />
